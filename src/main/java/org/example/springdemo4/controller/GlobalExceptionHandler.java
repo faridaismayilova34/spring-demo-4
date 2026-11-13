@@ -1,0 +1,52 @@
+package org.example.springdemo4.controller;
+
+import org.example.springdemo4.exception.ErrorResponse;
+import org.example.springdemo4.exception.InsufficientBalanceException;
+import org.example.springdemo4.exception.NotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.IllegalTransactionStateException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(NotFoundException ex) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<ErrorResponse> handleInsufficient(InsufficientBalanceException ex) {
+        return build(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
+        String msg = ex.getBindingResult().getFieldErrors().stream()
+                .map(e -> e.getField() + ": " + e.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+        return build(HttpStatus.BAD_REQUEST, msg);
+    }
+
+
+    @ExceptionHandler(IllegalTransactionStateException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalTx(IllegalTransactionStateException ex) {
+        return build(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleRuntime(RuntimeException ex) {
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    }
+
+    private ResponseEntity<ErrorResponse> build(HttpStatus status, String message) {
+        return ResponseEntity.status(status)
+                .body(new ErrorResponse(status.value(), status.getReasonPhrase(), message, LocalDateTime.now()));
+    }
+}
