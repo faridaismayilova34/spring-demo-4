@@ -1,4 +1,4 @@
-package org.example.springdemo4.dto;
+package org.example.springdemo4.dto.response;
 
 import java.math.BigDecimal;
 

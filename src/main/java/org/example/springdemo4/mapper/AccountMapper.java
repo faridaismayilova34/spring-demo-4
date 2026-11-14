@@ -1,6 +1,6 @@
 package org.example.springdemo4.mapper;
 
-import org.example.springdemo4.dto.AccountResponse;
+import org.example.springdemo4.dto.response.AccountResponse;
 import org.example.springdemo4.entity.AccountEntity;
 import org.springframework.stereotype.Component;
 

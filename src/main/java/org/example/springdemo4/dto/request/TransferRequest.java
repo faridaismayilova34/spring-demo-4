@@ -1,4 +1,4 @@
-package org.example.springdemo4.dto;
+package org.example.springdemo4.dto.request;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
