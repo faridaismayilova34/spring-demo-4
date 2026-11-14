@@ -2,7 +2,7 @@ package org.example.springdemo4.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.springdemo4.dto.AccountResponse;
+import org.example.springdemo4.dto.response.AccountResponse;
 import org.example.springdemo4.entity.AccountEntity;
 import org.example.springdemo4.exception.InsufficientBalanceException;
 import org.example.springdemo4.exception.NotFoundException;

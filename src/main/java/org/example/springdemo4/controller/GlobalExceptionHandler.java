@@ -1,6 +1,7 @@
 package org.example.springdemo4.controller;
 
-import org.example.springdemo4.exception.ErrorResponse;
+import org.example.springdemo4.exception.AlreadyExistsException;
+import org.example.springdemo4.dto.response.ErrorResponse;
 import org.example.springdemo4.exception.InsufficientBalanceException;
 import org.example.springdemo4.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,11 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyExists(AlreadyExistsException ex) {
+        return build(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
     @ExceptionHandler(InsufficientBalanceException.class)
     public ResponseEntity<ErrorResponse> handleInsufficient(InsufficientBalanceException ex) {
         return build(HttpStatus.BAD_REQUEST, ex.getMessage());
@@ -33,7 +39,6 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.joining("; "));
         return build(HttpStatus.BAD_REQUEST, msg);
     }
-
 
     @ExceptionHandler(IllegalTransactionStateException.class)
     public ResponseEntity<ErrorResponse> handleIllegalTx(IllegalTransactionStateException ex) {

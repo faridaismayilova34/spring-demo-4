@@ -1,6 +1,6 @@
 package org.example.springdemo4.mapper;
 
-import org.example.springdemo4.dto.AuditLogResponse;
+import org.example.springdemo4.dto.response.AuditLogResponse;
 import org.example.springdemo4.entity.AuditLogEntity;
 import org.springframework.stereotype.Component;
 

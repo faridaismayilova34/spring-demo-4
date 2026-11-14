@@ -1,7 +1,7 @@
 package org.example.springdemo4.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.springdemo4.dto.AuditLogResponse;
+import org.example.springdemo4.dto.response.AuditLogResponse;
 import org.example.springdemo4.service.AuditLogService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

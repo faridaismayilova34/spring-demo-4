@@ -2,7 +2,7 @@ package org.example.springdemo4.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.springdemo4.dto.AuditLogResponse;
+import org.example.springdemo4.dto.response.AuditLogResponse;
 
 import org.example.springdemo4.entity.AuditLogEntity;
 import org.example.springdemo4.mapper.AuditLogMapper;
