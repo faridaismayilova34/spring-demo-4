@@ -2,14 +2,10 @@ package org.example.springdemo4.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.springdemo4.dto.TransferRequest;
-import org.example.springdemo4.entity.AccountEntity;
-import org.example.springdemo4.repository.AccountRepository;
+import org.example.springdemo4.dto.request.TransferRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 @Slf4j
 @Service

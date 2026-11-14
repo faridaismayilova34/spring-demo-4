@@ -1,7 +1,7 @@
 package org.example.springdemo4.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.springdemo4.dto.AccountResponse;
+import org.example.springdemo4.dto.response.AccountResponse;
 import org.example.springdemo4.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 

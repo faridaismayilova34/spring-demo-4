@@ -2,7 +2,7 @@ package org.example.springdemo4.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.springdemo4.dto.TransferRequest;
+import org.example.springdemo4.dto.request.TransferRequest;
 import org.example.springdemo4.service.AccountService;
 import org.example.springdemo4.service.TransferService;
 import org.springframework.http.HttpStatus;

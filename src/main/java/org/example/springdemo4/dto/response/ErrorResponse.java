@@ -1,4 +1,4 @@
-package org.example.springdemo4.exception;
+package org.example.springdemo4.dto.response;
 
 import java.time.LocalDateTime;
 
