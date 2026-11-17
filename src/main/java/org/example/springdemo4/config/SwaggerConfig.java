@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-    private static final String SCHEME_NAME = "basicAuth";
+    private static final String SCHEME_NAME = "bearerAuth";
 
     @Bean
     public OpenAPI openAPI() {
@@ -23,7 +23,9 @@ public class SwaggerConfig {
                 .addSecurityItem(new SecurityRequirement().addList(SCHEME_NAME))
                 .components(new Components().addSecuritySchemes(SCHEME_NAME,
                         new SecurityScheme()
+                                .name(SCHEME_NAME)
                                 .type(SecurityScheme.Type.HTTP)
-                                .scheme("basic")));
+                                .scheme("bearer")
+                                .bearerFormat("JWT")));
     }
 }
