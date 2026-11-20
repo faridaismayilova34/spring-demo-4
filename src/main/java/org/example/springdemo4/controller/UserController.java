@@ -7,6 +7,7 @@ import org.example.springdemo4.dto.request.CreateUserRequest;
 import org.example.springdemo4.dto.response.UserResponse;
 import org.example.springdemo4.service.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,6 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/{id}/roles")
+    @PreAuthorize("hasRole('ADMIN')")
     public UserResponse addRole(@PathVariable Long id, @Valid @RequestBody AddRoleRequest request) {
         return userService.addRole(id, request);
     }

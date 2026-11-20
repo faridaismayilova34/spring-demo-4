@@ -6,10 +6,12 @@ import org.example.springdemo4.dto.request.TransferRequest;
 import org.example.springdemo4.service.AccountService;
 import org.example.springdemo4.service.TransferService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/transfers")
+@PreAuthorize("hasRole('ADMIN')")
 @RequiredArgsConstructor
 public class TransferController {
 

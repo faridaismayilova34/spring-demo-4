@@ -1,12 +1,10 @@
 package org.example.springdemo4.controller;
 
-import org.example.springdemo4.exception.AlreadyExistsException;
+import org.example.springdemo4.exception.*;
 import org.example.springdemo4.dto.response.ErrorResponse;
-import org.example.springdemo4.exception.InsufficientBalanceException;
-import org.example.springdemo4.exception.InvalidTokenException;
-import org.example.springdemo4.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.transaction.IllegalTransactionStateException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +40,22 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<ErrorResponse> handleInvalidToken(InvalidTokenException ex) {
         return build(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorized(UnauthorizedException ex) {
+        return build(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleForbidden(ForbiddenException ex) {
+        return build(HttpStatus.FORBIDDEN, ex.getMessage());
+    }
+
+    // @PreAuthorize pozulanda
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex) {
+        return build(HttpStatus.FORBIDDEN, "You don't have permission to access this resource");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
